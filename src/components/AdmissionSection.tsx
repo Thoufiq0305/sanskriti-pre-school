@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const admissionSchema = z.object({
   studentName: z.string().trim().min(1, "Student name is required").max(100),
@@ -27,21 +28,33 @@ const AdmissionSection = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    try {
-      // Placeholder for EmailJS integration
-      // To enable, install @emailjs/browser and configure with your service/template IDs
-      console.log("Form submitted:", data);
-      
-      // Simulate success
-      await new Promise((r) => setTimeout(r, 1000));
-      setStatus("success");
-      reset();
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 5000);
-    }
-  };
+  try {
+    setStatus("idle");
+
+    await emailjs.send(
+      "service_7absf1g",
+      "template_yvhbv97",
+      {
+        studentName: data.studentName,
+        parentName: data.parentName,
+        phone: data.phone,
+        email: data.email,
+        age: data.age,
+        message: data.message || "No message",
+      },
+      "jAwRQonBGzmbvzvS3"
+    );
+
+    setStatus("success");
+    reset();
+
+    setTimeout(() => setStatus("idle"), 5000);
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setTimeout(() => setStatus("idle"), 5000);
+  }
+};
 
   return (
     <section id="admissions" className="section-padding bg-sky/10">
@@ -74,14 +87,14 @@ const AdmissionSection = () => {
             <Field label="Student Name" error={errors.studentName?.message}>
               <input
                 {...register("studentName")}
-                placeholder="e.g. Aarav Sharma"
+                placeholder="e.g. Aarav"
                 className="form-input"
               />
             </Field>
             <Field label="Parent Name" error={errors.parentName?.message}>
               <input
                 {...register("parentName")}
-                placeholder="e.g. Rahul Sharma"
+                placeholder="e.g. Rahul"
                 className="form-input"
               />
             </Field>

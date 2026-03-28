@@ -3,7 +3,7 @@ const Footer = () => (
     <div className="max-w-6xl mx-auto text-center">
       <div className="flex items-center justify-center gap-2 mb-4">
         <span className="text-2xl">🌈</span>
-        <span className="font-heading font-extrabold text-xl">Little Stars Kindergarten</span>
+        <span className="font-heading font-extrabold text-xl">Sanskriti Kindergarten</span>
       </div>
       <p className="font-body text-primary-foreground/70 text-sm mb-6 max-w-md mx-auto">
         Nurturing young minds with love, care, and joyful learning since 2010.
@@ -20,7 +20,7 @@ const Footer = () => (
         ))}
       </div>
       <p className="text-xs text-primary-foreground/40">
-        © {new Date().getFullYear()} Little Stars Kindergarten. All rights reserved.
+        © {new Date().getFullYear()} Sanskriti Kindergarten. All rights reserved.
       </p>
     </div>
   </footer>

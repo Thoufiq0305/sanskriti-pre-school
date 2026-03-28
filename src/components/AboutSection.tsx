@@ -3,9 +3,9 @@ import teacher2 from "@/assets/teacher2.jpg";
 import teacher3 from "@/assets/teacher3.jpg";
 
 const teachers = [
-  { name: "Ms. Sarah", role: "Lead Teacher", img: teacher1 },
-  { name: "Mr. David", role: "Arts & Music", img: teacher2 },
-  { name: "Ms. Emily", role: "Early Learning", img: teacher3 },
+  { name: "Mrs. Lakshmi", role: "Kindergarten Lead Teacher", img: teacher1 },
+  { name: "Mr. Ramesh", role: "Music & Rhymes Teacher", img: teacher2 },
+  { name: "Ms. Anitha", role: "Playgroup Teacher", img: teacher3 },
 ];
 
 const AboutSection = () => (
@@ -15,7 +15,7 @@ const AboutSection = () => (
         About <span className="text-primary">Us</span> 🏫
       </h2>
       <p className="section-subtitle">
-        Little Stars Kindergarten has been nurturing young minds since 2010, creating a vibrant community where children love to learn.
+        Sanskriti Kindergarten has been nurturing young minds since 2010, creating a vibrant community where children love to learn.
       </p>
 
       {/* Vision & Mission */}

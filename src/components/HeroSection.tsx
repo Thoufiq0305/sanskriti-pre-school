@@ -25,7 +25,7 @@ const HeroSection = () => {
         </span>
         <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-tight mb-6 drop-shadow-lg">
           Welcome to{" "}
-          <span className="text-accent">Little Stars</span>{" "}
+          <span className="text-accent">Sanskriti</span>{" "}
           Kindergarten
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8 font-body drop-shadow">
