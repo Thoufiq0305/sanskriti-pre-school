@@ -4,6 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/firebase";
 
 const admissionSchema = z.object({
   studentName: z.string().trim().min(1, "Student name is required").max(100),
@@ -44,6 +46,16 @@ const AdmissionSection = () => {
       },
       "jAwRQonBGzmbvzvS3"
     );
+    await addDoc(collection(db, "applications"), {
+      studentName: data.studentName,
+      parentName: data.parentName,
+      phone: data.phone,
+      email: data.email,
+      age: data.age,
+      message: data.message || "",
+      status: "pending",
+      createdAt: serverTimestamp(),
+    });
 
     setStatus("success");
     reset();

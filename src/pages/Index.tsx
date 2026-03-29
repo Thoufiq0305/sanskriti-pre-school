@@ -9,6 +9,8 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { useAuth } from "@/hooks/useAuth";
+
 
 const Index = () => (
   <div className="min-h-screen">
