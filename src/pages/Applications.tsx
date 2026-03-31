@@ -92,6 +92,8 @@ export default function ApplicationsPage() {
     if (toDate) {
       const to = new Date(toDate)
 
+      to.setHours(23, 59, 59, 999)
+      
       filtered = filtered.filter((app) => {
         if (!app.createdAt?.seconds) return false
         const appDate = new Date(app.createdAt.seconds * 1000)

@@ -53,7 +53,7 @@ const AdmissionSection = () => {
       email: data.email,
       age: data.age,
       message: data.message || "",
-      status: "Under Review",
+      status: "pending",
       createdAt: serverTimestamp(),
     });
 
