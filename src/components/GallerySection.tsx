@@ -56,7 +56,7 @@
 //           <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-lg aspect-video">
 //             <iframe
 //               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-//               title="Little Stars Kindergarten Video"
+//               title="Sanskriti Kindergarten Video"
 //               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 //               allowFullScreen
 //               className="w-full h-full"
@@ -124,7 +124,7 @@ const GallerySection = () => {
         </h2>
 
         <p className="section-subtitle">
-          A glimpse into the colorful world of Little Stars — where every day is an adventure!
+          A glimpse into the colorful world of Sanskriti — where every day is an adventure!
         </p>
 
         {/* 🔥 Tabs */}

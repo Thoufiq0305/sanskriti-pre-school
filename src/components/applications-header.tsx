@@ -16,7 +16,7 @@ export function ApplicationsHeader({ totalApplications }: ApplicationsHeaderProp
             Applications
           </h1>
           <p className="text-sm text-muted-foreground">
-            Little Stars Kindergarten
+            Sanskriti Kindergarten
           </p>
         </div>
       </div>

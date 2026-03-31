@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import brandLogo from "@/assets/brandLogo.png";
 
 //  Base links (static)
 const baseLinks = [
@@ -28,18 +29,23 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border shadow-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
-          <span className="text-2xl">🌈</span>
+          {/* <span className="text-2xl">🌈</span>
           <span className="font-heading font-extrabold text-xl md:text-2xl text-foreground">
             Sanskriti Kindergarten
-          </span>
+          </span> */}
+          <img
+            src={brandLogo}
+            alt="Sanskriti Kindergarten Logo"
+            className="h-[75px] object-cover w-[190px]"
+          />
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 px-4 py-3 md:py-4">
           {navLinks.map((link) => (
             <a
               key={link.href}

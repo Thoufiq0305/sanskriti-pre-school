@@ -2,6 +2,7 @@ import { Search, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { Download } from "lucide-react"
 import {
   Select,
   SelectContent,
@@ -18,6 +19,7 @@ interface ApplicationsFiltersProps {
   toDate: string
   setToDate: (value: string) => void
   onSearch: () => void
+  onExport: () => void
 }
 
 export function ApplicationsFilters({
@@ -28,6 +30,7 @@ export function ApplicationsFilters({
   toDate,
   setToDate,
   onSearch,
+  onExport,
 }: ApplicationsFiltersProps) {
   return (
     <Card className="border border-border/50 shadow-lg rounded-3xl bg-white">
@@ -73,9 +76,9 @@ export function ApplicationsFilters({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="approved">Approved</SelectItem>
-                <SelectItem value="rejected">Rejected</SelectItem>
+                <SelectItem value="pending">Under Review</SelectItem>
+                <SelectItem value="approved">Accepted</SelectItem>
+                <SelectItem value="waitlisted">Waitlisted</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -86,6 +89,14 @@ export function ApplicationsFilters({
           >
             <Search className="size-4" />
             Search
+          </Button>
+          <Button
+            onClick={onExport}
+            variant="outline"
+            className="h-9 gap-2 border-primary text-primary hover:bg-primary/10"
+          >
+            <Download className="size-4" />
+            Export
           </Button>
         </div>
       </CardContent>

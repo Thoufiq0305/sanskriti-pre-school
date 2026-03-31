@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { collection, onSnapshot, doc, updateDoc, query, orderBy } from "firebase/firestore"
 import { db } from "@/firebase"
+import * as XLSX from "xlsx"
+import { saveAs } from "file-saver"
 
 import { ApplicationsHeader } from "@/components/applications-header"
 import { ApplicationsFilters } from "@/components/applications-filters"
@@ -15,7 +17,7 @@ export type Application = {
   parentName: string
   phone: string
   age: number
-  status: "pending" | "approved" | "rejected"
+  status: "pending" | "approved" | "waitlisted"
   createdAt?: any
 }
 
@@ -40,8 +42,8 @@ export default function ApplicationsPage() {
         id: doc.id,
         ...doc.data(),
       })) as Application[]
-      
-      setAllApplications(data)     
+
+      setAllApplications(data)
       setApplications(data)
     })
 
@@ -68,38 +70,38 @@ export default function ApplicationsPage() {
   }
   // FILTER LOGIC (WORKS ON FIREBASE DATA)
   const handleSearch = () => {
-  let filtered = [...allApplications] // use original data
+    let filtered = [...allApplications] // use original data
 
-  // STATUS FILTER
-  if (statusFilter !== "all") {
-    filtered = filtered.filter((app) => app.status === statusFilter)
+    // STATUS FILTER
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((app) => app.status === statusFilter)
+    }
+
+    // FROM DATE
+    if (fromDate) {
+      const from = new Date(fromDate)
+
+      filtered = filtered.filter((app) => {
+        if (!app.createdAt?.seconds) return false
+        const appDate = new Date(app.createdAt.seconds * 1000)
+        return appDate >= from
+      })
+    }
+
+    // TO DATE
+    if (toDate) {
+      const to = new Date(toDate)
+
+      filtered = filtered.filter((app) => {
+        if (!app.createdAt?.seconds) return false
+        const appDate = new Date(app.createdAt.seconds * 1000)
+        return appDate <= to
+      })
+    }
+
+    setApplications(filtered)
+    setCurrentPage(1)
   }
-
-  // FROM DATE
-  if (fromDate) {
-    const from = new Date(fromDate)
-
-    filtered = filtered.filter((app) => {
-      if (!app.createdAt?.seconds) return false
-      const appDate = new Date(app.createdAt.seconds * 1000)
-      return appDate >= from
-    })
-  }
-
-  // TO DATE
-  if (toDate) {
-    const to = new Date(toDate)
-
-    filtered = filtered.filter((app) => {
-      if (!app.createdAt?.seconds) return false
-      const appDate = new Date(app.createdAt.seconds * 1000)
-      return appDate <= to
-    })
-  }
-
-  setApplications(filtered)
-  setCurrentPage(1)
-}
 
   // PAGINATION
   const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE)
@@ -108,11 +110,48 @@ export default function ApplicationsPage() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   )
+  const handleExportExcel = () => {
+    if (applications.length === 0) {
+      alert("No data to export")
+      return
+    }
 
+    // Format data
+    const exportData = applications.map((app) => ({
+      "Student Name": app.studentName,
+      "Parent Name": app.parentName,
+      "Phone": app.phone,
+      "Age": app.age,
+      "Status": app.status,
+      "Created Date": app.createdAt?.seconds
+        ? new Date(app.createdAt.seconds * 1000).toLocaleString()
+        : "",
+    }))
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(exportData)
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Applications")
+
+    // Generate buffer
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    })
+
+    // Save file
+    const data = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
+    })
+
+    saveAs(data, "Applications.xlsx")
+  }
   return (
     <main className="min-h-screen bg-[#f6fbff] p-4 md:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
-        
+
         <ApplicationsHeader totalApplications={applications.length} />
 
         <ApplicationsFilters
@@ -123,6 +162,7 @@ export default function ApplicationsPage() {
           toDate={toDate}
           setToDate={setToDate}
           onSearch={handleSearch}
+          onExport={handleExportExcel}
         />
 
         <ApplicationsTable

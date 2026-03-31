@@ -26,13 +26,13 @@ function StatusBadge({ status }: { status: Application["status"] }) {
   const styles = {
     pending: "bg-[#fff4d6] text-[#b7791f] border-[#ffe58f]",
     approved: "bg-[#e6f7ec] text-[#2f855a] border-[#b7ebc6]",
-    rejected: "bg-[#fdecea] text-[#c53030] border-[#f5c6cb]",
+    waitlisted: "bg-[#fdecea] text-[#c53030] border-[#f5c6cb]",
   }
 
   const labels = {
-    pending: "Pending",
+    pending: "Under Review",
     approved: "Approved",
-    rejected: "Rejected",
+    waitlisted: "waitlisted",
   }
 
   return (
@@ -122,9 +122,9 @@ export function ApplicationsTable({
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="pending">Under Review</SelectItem>
                         <SelectItem value="approved">Approved</SelectItem>
-                        <SelectItem value="rejected">Rejected</SelectItem>
+                        <SelectItem value="waitlisted">waitlisted</SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
@@ -179,9 +179,9 @@ export function ApplicationsTable({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="pending">Under Review</SelectItem>
                     <SelectItem value="approved">Approved</SelectItem>
-                    <SelectItem value="rejected">Rejected</SelectItem>
+                    <SelectItem value="waitlisted">waitlisted</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
