@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from "react";
 import heroBg1 from "@/assets/hero-bg.jpg";
 import heroBg2 from "@/assets/hero-bg2.jpg";
@@ -21,7 +20,7 @@ const slides = [
     emoji: "🎨",
     title: (
       <>
-        Learn, Play &amp; <span className="text-accent">Grow</span> Together
+        Learn, Play & <span className="text-accent">Grow</span> Together
       </>
     ),
     subtitle:
@@ -61,26 +60,6 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, [current, goTo]);
 
-  const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const goTo = useCallback(
-    (index: number) => {
-      if (index === current || isTransitioning) return;
-      setIsTransitioning(true);
-      setCurrent(index);
-      setTimeout(() => setIsTransitioning(false), 700);
-    },
-    [current, isTransitioning]
-  );
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((current + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [current, goTo]);
-
   return (
     <section
       id="home"
@@ -100,24 +79,7 @@ const HeroSection = () => {
             height={1080}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-background/80" />
-        </div>
-      ))}
-      {/* Background images */}
-      {slides.map((slide, i) => (
-        <div
-          key={i}
-          className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-          style={{ opacity: i === current ? 1 : 0 }}
-        >
-          <img
-            src={slide.image}
-            alt={`Slide ${i + 1}`}
-            width={1920}
-            height={1080}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-background/80 pointer-events-none" />
         </div>
       ))}
 
@@ -128,34 +90,22 @@ const HeroSection = () => {
           className="inline-block animate-bounce-gentle text-5xl md:text-6xl mb-4"
         >
           {slides[current].emoji}
-        <span
-          key={`emoji-${current}`}
-          className="inline-block animate-bounce-gentle text-5xl md:text-6xl mb-4"
-        >
-          {slides[current].emoji}
         </span>
-        <h1
-          key={`title-${current}`}
-          className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-tight mb-6 drop-shadow-lg animate-fade-in"
-        >
-          {slides[current].title}
+
         <h1
           key={`title-${current}`}
           className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-tight mb-6 drop-shadow-lg animate-fade-in"
         >
           {slides[current].title}
         </h1>
-        <p
-          key={`sub-${current}`}
-          className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8 font-body drop-shadow animate-fade-in"
-        >
-          {slides[current].subtitle}
+
         <p
           key={`sub-${current}`}
           className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8 font-body drop-shadow animate-fade-in"
         >
           {slides[current].subtitle}
         </p>
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#admissions"
@@ -177,23 +127,6 @@ const HeroSection = () => {
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                i === current
-                  ? "bg-primary scale-125 w-8"
-                  : "bg-primary-foreground/50 hover:bg-primary-foreground/80"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Navigation dots */}
-        <div className="flex justify-center gap-3 mt-8">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Go to slide ${i + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 i === current
                   ? "bg-primary scale-125 w-8"
