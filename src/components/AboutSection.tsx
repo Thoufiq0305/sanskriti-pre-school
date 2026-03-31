@@ -38,23 +38,19 @@ const AboutSection = () => (
 
       {/* Teachers */}
       <h3 className="font-heading font-bold text-2xl md:text-3xl text-center mb-8 text-foreground">
-        Meet Our Teachers 👩‍🏫
+        Why Choose Sanskriti? 🌈
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {teachers.map((t, i) => (
-          <div key={i} className="bg-card rounded-3xl overflow-hidden shadow-sm hover-lift text-center">
-            <img
-              src={t.img}
-              alt={t.name}
-              loading="lazy"
-              width={512}
-              height={512}
-              className="w-full aspect-square object-cover"
-            />
-            <div className="p-5">
-              <h4 className="font-heading font-bold text-lg text-foreground">{t.name}</h4>
-              <p className="text-sm text-muted-foreground">{t.role}</p>
-            </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { icon: "🧠", title: "Play-Based Learning", desc: "Learning through fun activities that boost creativity and curiosity." },
+          { icon: "👩‍🏫", title: "Experienced Teachers", desc: "Caring and qualified staff who nurture every child." },
+          { icon: "🛡️", title: "Safe Environment", desc: "Secure campus with child-friendly infrastructure." },
+          { icon: "🎨", title: "Creative Activities", desc: "Art, music, and play to develop overall skills." },
+        ].map((item, i) => (
+          <div key={i} className="bg-card rounded-3xl p-6 text-center shadow-sm hover-lift">
+            <div className="text-4xl mb-3">{item.icon}</div>
+            <h4 className="font-heading font-bold text-lg text-foreground">{item.title}</h4>
+            <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
           </div>
         ))}
       </div>
