@@ -1,11 +1,34 @@
 import teacher1 from "@/assets/teacher1.jpg";
 import teacher2 from "@/assets/teacher2.jpg";
 import teacher3 from "@/assets/teacher3.jpg";
+import { Brain, Users, ShieldCheck, Palette } from "lucide-react";
 
 const teachers = [
   { name: "Mrs. Lakshmi", role: "Kindergarten Lead Teacher", img: teacher1 },
   { name: "Mr. Ramesh", role: "Music & Rhymes Teacher", img: teacher2 },
   { name: "Ms. Anitha", role: "Playgroup Teacher", img: teacher3 },
+];
+const features = [
+  {
+    icon: Brain,
+    title: "Play-Based Learning",
+    desc: "Learning through fun activities that boost creativity and curiosity.",
+  },
+  {
+    icon: Users,
+    title: "Experienced Teachers",
+    desc: "Caring and qualified staff who nurture every child.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safe Environment",
+    desc: "Secure campus with child-friendly infrastructure.",
+  },
+  {
+    icon: Palette,
+    title: "Creative Activities",
+    desc: "Art, music, and play to develop overall skills.",
+  },
 ];
 
 const AboutSection = () => (
@@ -40,7 +63,7 @@ const AboutSection = () => (
       <h3 className="font-heading font-bold text-2xl md:text-3xl text-center mb-8 text-foreground">
         Why Choose Sanskriti? 🌈
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {[
           { icon: "🧠", title: "Play-Based Learning", desc: "Learning through fun activities that boost creativity and curiosity." },
           { icon: "👩‍🏫", title: "Experienced Teachers", desc: "Caring and qualified staff who nurture every child." },
@@ -53,6 +76,23 @@ const AboutSection = () => (
             <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
           </div>
         ))}
+      </div> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {features.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={i}
+              className="bg-card rounded-3xl p-6 text-center shadow-sm hover-lift"
+            >
+              <div className="flex justify-center mb-3">
+                <Icon className="w-10 h-10 text-primary" />
+              </div>
+              <h4 className="font-bold text-lg">{item.title}</h4>
+              <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   </section>
