@@ -18,6 +18,8 @@ interface ApplicationsFiltersProps {
   setFromDate: (value: string) => void
   toDate: string
   setToDate: (value: string) => void
+  searchQuery: string
+  setSearchQuery: (value: string) => void
   onSearch: () => void
   onExport: () => void
 }
