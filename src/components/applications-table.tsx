@@ -17,9 +17,20 @@ import {
 } from "@/components/ui/select"
 import type { Application } from "@/pages/Applications"
 
+type SortField = "studentName" | "createdAt" | null
+type SortDir = "asc" | "desc"
+
 interface ApplicationsTableProps {
   applications: Application[]
   onStatusChange: (id: string, status: Application["status"]) => void
+  sortField: SortField
+  sortDir: SortDir
+  onSort: (field: SortField) => void
+}
+
+function SortIcon({ field, sortField, sortDir }: { field: SortField; sortField: SortField; sortDir: SortDir }) {
+  if (sortField !== field) return <ArrowUpDown className="size-3 text-muted-foreground" />
+  return sortDir === "asc" ? <ArrowUp className="size-3" /> : <ArrowDown className="size-3" />
 }
 
 function StatusBadge({ status }: { status: Application["status"] }) {
