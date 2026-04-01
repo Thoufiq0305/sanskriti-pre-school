@@ -33,6 +33,7 @@ export default function ApplicationsPage() {
   const [fromDate, setFromDate] = useState<string>("")
   const [toDate, setToDate] = useState<string>("")
   const [searchQuery, setSearchQuery] = useState<string>("")
+  const [sortField, setSortField] = useState<SortField>("createdAt")
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
 
   // FETCH DATA FROM FIREBASE (REALTIME)
