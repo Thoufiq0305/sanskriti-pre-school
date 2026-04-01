@@ -217,6 +217,7 @@ export default function ApplicationsPage() {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onSearch={handleSearch}
+          onReset={handleReset}
           onExport={handleExportExcel}
         />
 
