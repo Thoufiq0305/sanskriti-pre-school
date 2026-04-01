@@ -31,6 +31,8 @@ export function ApplicationsFilters({
   setFromDate,
   toDate,
   setToDate,
+  searchQuery,
+  setSearchQuery,
   onSearch,
   onExport,
 }: ApplicationsFiltersProps) {
