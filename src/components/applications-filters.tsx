@@ -72,6 +72,22 @@ export function ApplicationsFilters({
 
           <div className="flex flex-1 flex-col gap-2">
             <label className="text-sm font-medium text-foreground">
+              Search
+            </label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search by name or phone..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-muted/30"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-2">
+            <label className="text-sm font-medium text-foreground">
               Status
             </label>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
