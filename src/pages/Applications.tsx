@@ -205,7 +205,7 @@ export default function ApplicationsPage() {
     <main className="min-h-screen bg-[#f6fbff] p-4 md:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
 
-        <ApplicationsHeader totalApplications={applications.length} sortOrder={sortOrder} onToggleSort={handleToggleSort} />
+        <ApplicationsHeader totalApplications={applications.length} />
 
         <ApplicationsFilters
           statusFilter={statusFilter}
