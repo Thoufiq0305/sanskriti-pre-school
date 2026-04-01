@@ -1,10 +1,13 @@
-import { GraduationCap, Sparkles } from "lucide-react"
+import { GraduationCap, Sparkles, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface ApplicationsHeaderProps {
   totalApplications: number
+  sortOrder: "asc" | "desc"
+  onToggleSort: () => void
 }
 
-export function ApplicationsHeader({ totalApplications }: ApplicationsHeaderProps) {
+export function ApplicationsHeader({ totalApplications, sortOrder, onToggleSort }: ApplicationsHeaderProps) {
   return (
     <header className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
       <div className="flex items-center gap-3">
@@ -20,11 +23,21 @@ export function ApplicationsHeader({ totalApplications }: ApplicationsHeaderProp
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-2 rounded-xl bg-[#e6f7ec] px-4 py-2">
-        <Sparkles className="size-4 text-secondary-foreground" />
-        <span className="text-sm font-medium text-secondary-foreground">
-          {totalApplications} Total Applications
-        </span>
+      <div className="flex items-center gap-3">
+        <Button
+          variant="outline"
+          onClick={onToggleSort}
+          className="h-9 gap-2 border-border"
+        >
+          {sortOrder === "asc" ? <ArrowUp className="size-4" /> : <ArrowDown className="size-4" />}
+          Sort by Date {sortOrder === "asc" ? "↑" : "↓"}
+        </Button>
+        <div className="flex items-center gap-2 rounded-xl bg-[#e6f7ec] px-4 py-2">
+          <Sparkles className="size-4 text-secondary-foreground" />
+          <span className="text-sm font-medium text-secondary-foreground">
+            {totalApplications} Total Applications
+          </span>
+        </div>
       </div>
     </header>
   )

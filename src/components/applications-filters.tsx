@@ -18,6 +18,8 @@ interface ApplicationsFiltersProps {
   setFromDate: (value: string) => void
   toDate: string
   setToDate: (value: string) => void
+  searchQuery: string
+  setSearchQuery: (value: string) => void
   onSearch: () => void
   onExport: () => void
 }
@@ -29,6 +31,8 @@ export function ApplicationsFilters({
   setFromDate,
   toDate,
   setToDate,
+  searchQuery,
+  setSearchQuery,
   onSearch,
   onExport,
 }: ApplicationsFiltersProps) {
@@ -61,6 +65,22 @@ export function ApplicationsFilters({
                 type="date"
                 value={toDate}
                 onChange={(e) => setToDate(e.target.value)}
+                className="pl-10 bg-muted/30"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-2">
+            <label className="text-sm font-medium text-foreground">
+              Search
+            </label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search by name or phone..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 bg-muted/30"
               />
             </div>
