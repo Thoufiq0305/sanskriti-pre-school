@@ -30,6 +30,8 @@ export default function ApplicationsPage() {
   const [statusFilter, setStatusFilter] = useState<string>("all")
   const [fromDate, setFromDate] = useState<string>("")
   const [toDate, setToDate] = useState<string>("")
+  const [searchQuery, setSearchQuery] = useState<string>("")
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
 
   // FETCH DATA FROM FIREBASE (REALTIME)
   useEffect(() => {
