@@ -34,6 +34,7 @@ export function ApplicationsFilters({
   searchQuery,
   setSearchQuery,
   onSearch,
+  onReset,
   onExport,
 }: ApplicationsFiltersProps) {
   return (

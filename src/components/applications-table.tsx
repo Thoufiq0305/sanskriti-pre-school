@@ -94,10 +94,14 @@ export function ApplicationsTable({
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">Age</TableHead>
                 <TableHead className="font-semibold text-foreground">Status</TableHead>
-                <TableHead className="font-semibold text-foreground">
+                <TableHead
+                  className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                  onClick={() => onSort("createdAt")}
+                >
                   <div className="flex items-center gap-2">
                     <Calendar className="size-4" />
                     Date
+                    <SortIcon field="createdAt" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">Update Status</TableHead>
