@@ -111,6 +111,14 @@ export function ApplicationsFilters({
             Search
           </Button>
           <Button
+            onClick={onReset}
+            variant="outline"
+            className="h-9 gap-2 border-border"
+          >
+            <RotateCcw className="size-4" />
+            Reset
+          </Button>
+          <Button
             onClick={onExport}
             variant="outline"
             className="h-9 gap-2 border-primary text-primary hover:bg-primary/10"
