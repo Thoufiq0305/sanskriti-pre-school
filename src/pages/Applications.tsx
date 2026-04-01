@@ -133,14 +133,28 @@ export default function ApplicationsPage() {
     setCurrentPage(1)
   }
 
-  const handleToggleSort = () => {
-    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+  const handleColumnSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+    } else {
+      setSortField(field)
+      setSortOrder("asc")
+    }
   }
 
-  // Re-run search when sort order changes
+  const handleReset = () => {
+    setSearchQuery("")
+    setStatusFilter("all")
+    setFromDate("")
+    setToDate("")
+    setApplications(allApplications)
+    setCurrentPage(1)
+  }
+
+  // Re-run search when sort order or field changes
   useEffect(() => {
     handleSearch()
-  }, [sortOrder])
+  }, [sortOrder, sortField])
 
   // PAGINATION
   const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE)
