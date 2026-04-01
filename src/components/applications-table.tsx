@@ -58,6 +58,9 @@ function StatusBadge({ status }: { status: Application["status"] }) {
 export function ApplicationsTable({
   applications,
   onStatusChange,
+  sortField,
+  sortDir,
+  onSort,
 }: ApplicationsTableProps) {
   return (
     <Card className="border border-border/50 shadow-lg rounded-3xl overflow-hidden bg-white">
