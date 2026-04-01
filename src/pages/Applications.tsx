@@ -115,9 +115,18 @@ export default function ApplicationsPage() {
 
     // SORT
     filtered.sort((a, b) => {
-      const aTime = a.createdAt?.seconds || 0
-      const bTime = b.createdAt?.seconds || 0
-      return sortOrder === "asc" ? aTime - bTime : bTime - aTime
+      if (!sortField) return 0
+      if (sortField === "createdAt") {
+        const aTime = a.createdAt?.seconds || 0
+        const bTime = b.createdAt?.seconds || 0
+        return sortOrder === "asc" ? aTime - bTime : bTime - aTime
+      }
+      if (sortField === "studentName") {
+        const aName = (a.studentName || "").toLowerCase()
+        const bName = (b.studentName || "").toLowerCase()
+        return sortOrder === "asc" ? aName.localeCompare(bName) : bName.localeCompare(aName)
+      }
+      return 0
     })
 
     setApplications(filtered)
