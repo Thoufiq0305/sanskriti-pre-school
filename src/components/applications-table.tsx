@@ -70,10 +70,14 @@ export function ApplicationsTable({
           <Table>
             <TableHeader>
               <TableRow className="bg-[#dff4ff] hover:bg-[#cceeff]">
-                <TableHead className="font-semibold text-foreground">
+                <TableHead
+                  className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                  onClick={() => onSort("studentName")}
+                >
                   <div className="flex items-center gap-2">
                     <Baby className="size-4" />
                     Student Name
+                    <SortIcon field="studentName" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">
