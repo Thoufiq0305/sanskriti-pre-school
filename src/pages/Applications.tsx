@@ -228,7 +228,6 @@ export default function ApplicationsPage() {
           sortDir={sortOrder}
           onSort={handleColumnSort}
         />
-        />
 
         <ApplicationsPagination
           currentPage={currentPage}
