@@ -151,10 +151,17 @@ export default function ApplicationsPage() {
     setCurrentPage(1)
   }
 
-  // Re-run search when sort order or field changes
+  // Re-run search when sort order, field, or search query changes
   useEffect(() => {
     handleSearch()
   }, [sortOrder, sortField])
+
+  // Auto-reset when search is cleared
+  useEffect(() => {
+    if (searchQuery === "") {
+      handleSearch()
+    }
+  }, [searchQuery])
 
   // PAGINATION
   const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE)
