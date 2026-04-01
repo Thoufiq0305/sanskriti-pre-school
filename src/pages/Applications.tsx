@@ -11,6 +11,8 @@ import { ApplicationsFilters } from "@/components/applications-filters"
 import { ApplicationsTable } from "@/components/applications-table"
 import { ApplicationsPagination } from "@/components/applications-pagination"
 
+export type SortField = "studentName" | "createdAt" | null
+
 export type Application = {
   id: string
   studentName: string
