@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select"
 import type { Application } from "@/pages/Applications"
 
-type SortField = "studentName" | "createdAt" | null
+type SortField = "studentName" | "parentName" | "createdAt" | "status" | "age" | "phone" | null
 type SortDir = "asc" | "desc"
 
 interface ApplicationsTableProps {
@@ -80,20 +80,37 @@ export function ApplicationsTable({
                     <SortIcon field="studentName" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
-                <TableHead className="font-semibold text-foreground">
+                <TableHead className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]" 
+                onClick={() => onSort("parentName")}>
                   <div className="flex items-center gap-2">
                     <User className="size-4" />
                     Parent Name
+                    <SortIcon field="parentName" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
-                <TableHead className="font-semibold text-foreground">
+                <TableHead className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]" 
+                onClick={() => onSort("phone")}>
                   <div className="flex items-center gap-2">
                     <Phone className="size-4" />
                     Phone
+                    <SortIcon field="phone" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
-                <TableHead className="font-semibold text-foreground">Age</TableHead>
-                <TableHead className="font-semibold text-foreground">Status</TableHead>
+                <TableHead className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                onClick={() => onSort("age")}>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="size-4" />
+                    Age
+                    <SortIcon field="age" sortField={sortField} sortDir={sortDir} />
+                  </div>
+                </TableHead>
+                <TableHead className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                onClick={() => onSort("status")}>
+                  <div className="flex items-center gap-2">
+                    Status
+                    <SortIcon field="status" sortField={sortField} sortDir={sortDir} />
+                  </div>
+                </TableHead>
                 <TableHead
                   className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
                   onClick={() => onSort("createdAt")}
@@ -104,7 +121,13 @@ export function ApplicationsTable({
                     <SortIcon field="createdAt" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
-                <TableHead className="font-semibold text-foreground">Update Status</TableHead>
+                <TableHead className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]" 
+                onClick={() => onSort("status")}>
+                  <div className="flex items-center gap-2">
+                    Update Status
+                    <SortIcon field="status" sortField={sortField} sortDir={sortDir} />
+                  </div>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

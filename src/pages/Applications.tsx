@@ -126,6 +126,26 @@ export default function ApplicationsPage() {
         const bName = (b.studentName || "").toLowerCase()
         return sortOrder === "asc" ? aName.localeCompare(bName) : bName.localeCompare(aName)
       }
+      if(sortField === "status") {
+        const aStatus = (a.status || "").toLowerCase()
+        const bStatus = (b.status || "").toLowerCase()
+        return sortOrder === "asc" ? aStatus.localeCompare(bStatus) : bStatus.localeCompare(aStatus)
+      }
+      if(sortField === "phone") {
+        const aPhone = (a.phone || "").toLowerCase()
+        const bPhone = (b.phone || "").toLowerCase()
+        return sortOrder === "asc" ? aPhone.localeCompare(bPhone) : bPhone.localeCompare(aPhone)
+      }
+      if(sortField === "parentName") {
+        const aParentName = (a.parentName || "").toLowerCase()
+        const bParentName = (b.parentName || "").toLowerCase()
+        return sortOrder === "asc" ? aParentName.localeCompare(bParentName) : bParentName.localeCompare(aParentName)
+      }
+      if(sortField === "age") {
+        const aAge = a.age || 0
+        const bAge = b.age || 0
+        return sortOrder === "asc" ? aAge - bAge : bAge - aAge
+      }
       return 0
     })
 
