@@ -224,6 +224,10 @@ export default function ApplicationsPage() {
         <ApplicationsTable
           applications={paginatedApplications}
           onStatusChange={handleStatusChange}
+          sortField={sortField}
+          sortDir={sortOrder}
+          onSort={handleColumnSort}
+        />
         />
 
         <ApplicationsPagination
