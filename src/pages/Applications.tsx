@@ -11,6 +11,8 @@ import { ApplicationsFilters } from "@/components/applications-filters"
 import { ApplicationsTable } from "@/components/applications-table"
 import { ApplicationsPagination } from "@/components/applications-pagination"
 
+export type SortField = "studentName" | "createdAt" | null
+
 export type Application = {
   id: string
   studentName: string
@@ -31,6 +33,7 @@ export default function ApplicationsPage() {
   const [fromDate, setFromDate] = useState<string>("")
   const [toDate, setToDate] = useState<string>("")
   const [searchQuery, setSearchQuery] = useState<string>("")
+  const [sortField, setSortField] = useState<SortField>("createdAt")
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
 
   // FETCH DATA FROM FIREBASE (REALTIME)
@@ -112,23 +115,53 @@ export default function ApplicationsPage() {
 
     // SORT
     filtered.sort((a, b) => {
-      const aTime = a.createdAt?.seconds || 0
-      const bTime = b.createdAt?.seconds || 0
-      return sortOrder === "asc" ? aTime - bTime : bTime - aTime
+      if (!sortField) return 0
+      if (sortField === "createdAt") {
+        const aTime = a.createdAt?.seconds || 0
+        const bTime = b.createdAt?.seconds || 0
+        return sortOrder === "asc" ? aTime - bTime : bTime - aTime
+      }
+      if (sortField === "studentName") {
+        const aName = (a.studentName || "").toLowerCase()
+        const bName = (b.studentName || "").toLowerCase()
+        return sortOrder === "asc" ? aName.localeCompare(bName) : bName.localeCompare(aName)
+      }
+      return 0
     })
 
     setApplications(filtered)
     setCurrentPage(1)
   }
 
-  const handleToggleSort = () => {
-    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+  const handleColumnSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+    } else {
+      setSortField(field)
+      setSortOrder("asc")
+    }
   }
 
-  // Re-run search when sort order changes
+  const handleReset = () => {
+    setSearchQuery("")
+    setStatusFilter("all")
+    setFromDate("")
+    setToDate("")
+    setApplications(allApplications)
+    setCurrentPage(1)
+  }
+
+  // Re-run search when sort order, field, or search query changes
   useEffect(() => {
     handleSearch()
-  }, [sortOrder])
+  }, [sortOrder, sortField])
+
+  // Auto-reset when search is cleared
+  useEffect(() => {
+    if (searchQuery === "") {
+      handleSearch()
+    }
+  }, [searchQuery])
 
   // PAGINATION
   const totalPages = Math.ceil(applications.length / ITEMS_PER_PAGE)
@@ -179,7 +212,7 @@ export default function ApplicationsPage() {
     <main className="min-h-screen bg-[#f6fbff] p-4 md:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
 
-        <ApplicationsHeader totalApplications={applications.length} sortOrder={sortOrder} onToggleSort={handleToggleSort} />
+        <ApplicationsHeader totalApplications={applications.length} />
 
         <ApplicationsFilters
           statusFilter={statusFilter}
@@ -191,12 +224,16 @@ export default function ApplicationsPage() {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onSearch={handleSearch}
+          onReset={handleReset}
           onExport={handleExportExcel}
         />
 
         <ApplicationsTable
           applications={paginatedApplications}
           onStatusChange={handleStatusChange}
+          sortField={sortField}
+          sortDir={sortOrder}
+          onSort={handleColumnSort}
         />
 
         <ApplicationsPagination

@@ -1,8 +1,7 @@
-import { Search, Calendar } from "lucide-react"
+import { Search, Calendar, Download, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Download } from "lucide-react"
 import {
   Select,
   SelectContent,
@@ -21,6 +20,7 @@ interface ApplicationsFiltersProps {
   searchQuery: string
   setSearchQuery: (value: string) => void
   onSearch: () => void
+  onReset: () => void
   onExport: () => void
 }
 
@@ -34,6 +34,7 @@ export function ApplicationsFilters({
   searchQuery,
   setSearchQuery,
   onSearch,
+  onReset,
   onExport,
 }: ApplicationsFiltersProps) {
   return (
@@ -109,6 +110,14 @@ export function ApplicationsFilters({
           >
             <Search className="size-4" />
             Search
+          </Button>
+          <Button
+            onClick={onReset}
+            variant="outline"
+            className="h-9 gap-2 border-border"
+          >
+            <RotateCcw className="size-4" />
+            Reset
           </Button>
           <Button
             onClick={onExport}

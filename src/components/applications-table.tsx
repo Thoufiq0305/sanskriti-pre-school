@@ -1,4 +1,4 @@
-import { User, Phone, Calendar, Baby } from "lucide-react"
+import { User, Phone, Calendar, Baby, ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Table,
@@ -17,9 +17,20 @@ import {
 } from "@/components/ui/select"
 import type { Application } from "@/pages/Applications"
 
+type SortField = "studentName" | "createdAt" | null
+type SortDir = "asc" | "desc"
+
 interface ApplicationsTableProps {
   applications: Application[]
   onStatusChange: (id: string, status: Application["status"]) => void
+  sortField: SortField
+  sortDir: SortDir
+  onSort: (field: SortField) => void
+}
+
+function SortIcon({ field, sortField, sortDir }: { field: SortField; sortField: SortField; sortDir: SortDir }) {
+  if (sortField !== field) return <ArrowUpDown className="size-3 text-muted-foreground" />
+  return sortDir === "asc" ? <ArrowUp className="size-3" /> : <ArrowDown className="size-3" />
 }
 
 function StatusBadge({ status }: { status: Application["status"] }) {
@@ -47,6 +58,9 @@ function StatusBadge({ status }: { status: Application["status"] }) {
 export function ApplicationsTable({
   applications,
   onStatusChange,
+  sortField,
+  sortDir,
+  onSort,
 }: ApplicationsTableProps) {
   return (
     <Card className="border border-border/50 shadow-lg rounded-3xl overflow-hidden bg-white">
@@ -56,10 +70,14 @@ export function ApplicationsTable({
           <Table>
             <TableHeader>
               <TableRow className="bg-[#dff4ff] hover:bg-[#cceeff]">
-                <TableHead className="font-semibold text-foreground">
+                <TableHead
+                  className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                  onClick={() => onSort("studentName")}
+                >
                   <div className="flex items-center gap-2">
                     <Baby className="size-4" />
                     Student Name
+                    <SortIcon field="studentName" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">
@@ -76,10 +94,14 @@ export function ApplicationsTable({
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">Age</TableHead>
                 <TableHead className="font-semibold text-foreground">Status</TableHead>
-                <TableHead className="font-semibold text-foreground">
+                <TableHead
+                  className="font-semibold text-foreground cursor-pointer select-none hover:bg-[#cceeff]"
+                  onClick={() => onSort("createdAt")}
+                >
                   <div className="flex items-center gap-2">
                     <Calendar className="size-4" />
                     Date
+                    <SortIcon field="createdAt" sortField={sortField} sortDir={sortDir} />
                   </div>
                 </TableHead>
                 <TableHead className="font-semibold text-foreground">Update Status</TableHead>
