@@ -20,6 +20,7 @@ interface ApplicationsFiltersProps {
   searchQuery: string
   setSearchQuery: (value: string) => void
   onSearch: () => void
+  onReset: () => void
   onExport: () => void
 }
 
