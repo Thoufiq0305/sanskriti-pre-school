@@ -9,12 +9,14 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import AnnouncementPopup from "@/components/AnnouncementPopup";
 import { useAuth } from "@/hooks/useAuth";
 
 
 const Index = () => (
   <div className="min-h-screen">
     <Navbar />
+    <AnnouncementPopup />
     <HeroSection />
     <HighlightsSection />
     <AboutSection />
