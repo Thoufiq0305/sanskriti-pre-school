@@ -74,9 +74,11 @@ const HeroSection = () => {
         >
           <img
             src={slide.image}
-            alt={`Slide ${i + 1}`}
+            alt={`Happy children learning at Sanskriti Kindergarten in Chennai — slide ${i + 1}`}
             width={1920}
             height={1080}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-background/80 pointer-events-none" />
