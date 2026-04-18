@@ -15,6 +15,7 @@ const FAQ = () => (
     />
     <Navbar />
     <div className="pt-24">
+      <h1 className="sr-only">Frequently Asked Questions — Sanskriti Kindergarten Chennai</h1>
       <FAQSection />
       <ContactSection />
     </div>

@@ -15,6 +15,7 @@ const Admissions = () => (
     />
     <Navbar />
     <div className="pt-24">
+      <h1 className="sr-only">Admissions Open at Sanskriti Kindergarten Chennai</h1>
       <AdmissionSection />
       <ContactSection />
     </div>

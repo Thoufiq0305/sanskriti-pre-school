@@ -15,6 +15,7 @@ const Testimonials = () => (
     />
     <Navbar />
     <div className="pt-24">
+      <h1 className="sr-only">Parent Testimonials — Sanskriti Kindergarten Chennai</h1>
       <TestimonialsSection />
       <ContactSection />
     </div>

@@ -15,6 +15,7 @@ const About = () => (
     />
     <Navbar />
     <div className="pt-24">
+      <h1 className="sr-only">About Sanskriti Kindergarten — Preschool in Chennai</h1>
       <AboutSection />
       <ContactSection />
     </div>

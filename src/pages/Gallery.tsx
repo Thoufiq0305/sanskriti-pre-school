@@ -15,6 +15,7 @@ const Gallery = () => (
     />
     <Navbar />
     <div className="pt-24">
+      <h1 className="sr-only">Sanskriti Kindergarten Gallery — Photos & Videos from our Chennai Preschool</h1>
       <GallerySection />
       <ContactSection />
     </div>
