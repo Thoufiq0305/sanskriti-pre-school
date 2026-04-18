@@ -7,6 +7,11 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login";
 import Applications from "./pages/Applications";
+import About from "./pages/About";
+import Gallery from "./pages/Gallery";
+import Admissions from "./pages/Admissions";
+import Testimonials from "./pages/Testimonials";
+import FAQ from "./pages/FAQ";
 import { useAuth } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
@@ -28,6 +33,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/admissions" element={<Admissions />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/applications"
