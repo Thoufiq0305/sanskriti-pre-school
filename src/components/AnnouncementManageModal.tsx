@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2, Trash2, Upload, Image as ImageIcon } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 
 const ANNOUNCEMENT_DOC = doc(db, "settings", "announcement")
 
@@ -65,6 +65,15 @@ export default function AnnouncementManageModal({ open, onOpenChange }: Announce
       toast({ title: "Title is required", variant: "destructive" })
       return
     }
+    if (!description.trim()) {
+      toast({ title: "Description is required", variant: "destructive" });
+      return;
+    }
+
+    if (!imagePreview) {
+      toast({ title: "Image is required", variant: "destructive" });
+      return;
+    }
     setLoading(true)
     try {
       await setDoc(ANNOUNCEMENT_DOC, {
@@ -74,10 +83,24 @@ export default function AnnouncementManageModal({ open, onOpenChange }: Announce
         createdAt: serverTimestamp(),
       })
       setExists(true)
-      toast({ title: exists ? "Announcement updated!" : "Announcement created!" })
-    } catch (e) {
-      console.error(e)
-      toast({ title: "Failed to save", variant: "destructive" })
+      toast({ title: exists ? "Announcement updated!" : "Announcement created!",
+      description: "Your announcement is live now 🎉",
+      className: "bg-green-600 text-white",
+       })
+      onOpenChange(false)
+    } catch (e: any) {
+      console.error("SAVE ERROR:", e);
+
+      let message = "Failed to save";
+
+      if (e.message?.includes("longer than")) {
+        message = "Image is too large. Please upload a smaller image (max ~700KB)";
+      }
+
+      toast({
+        title: message,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false)
     }
@@ -117,15 +140,21 @@ export default function AnnouncementManageModal({ open, onOpenChange }: Announce
         ) : (
           <div className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm font-medium">Title</label>
+              <label className="mb-1 block text-sm font-medium">Title
+                <span className="text-red-500">*</span>
+              </label>
               <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Summer Camp" />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium">Description</label>
+              <label className="mb-1 block text-sm font-medium">Description
+                <span className="text-red-500">*</span>
+              </label>
               <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Announcement details..." rows={3} />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium">Image</label>
+              <label className="mb-1 block text-sm font-medium">Image
+                <span className="text-red-500">*</span>
+              </label>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
               {imagePreview ? (
                 <div className="relative">
