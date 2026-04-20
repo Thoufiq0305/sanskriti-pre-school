@@ -2,18 +2,18 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Priya M.",
-    text: "My daughter absolutely loves going to school every morning. The teachers are incredibly warm and caring. Best decision we made!",
+    name: "Sathya B.",
+    text: "Really it's a good ,safe and friendly place for our kids. My daughter loves Sanskriti very much. She likes all food in daycare also. All teachers and other staff also so kind to my daughter. We missed Sanskriti so much due to my transfer!",
     stars: 5,
   },
   {
-    name: "Amit K.",
-    text: "The play-based learning approach has done wonders for our son's confidence and creativity. Highly recommended!",
+    name: "Chan Drika.",
+    text: "I would highly recommend Sanskriti school as it is run by an excellent team. They do a great job of making learning fun for kids and thereby making it easy for the parents too. They ensure overall development and not just academics. This will definitely be a great place to start your child's education.",
     stars: 5,
   },
   {
-    name: "Sara T.",
-    text: "Safe, clean, and full of joy. The regular updates and parent involvement make us feel truly connected.",
+    name: "Ashwini Shiva.",
+    text: "Good activity centre near by this area. Daycare also well maintained by the management.",
     stars: 5,
   },
 ];
