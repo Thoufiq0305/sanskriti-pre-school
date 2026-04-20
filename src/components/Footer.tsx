@@ -17,7 +17,7 @@ const socialLinks = [
   },
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/velachery.sanskriti/",
     icon: Facebook,
   },
   {

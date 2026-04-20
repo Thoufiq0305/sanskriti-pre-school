@@ -57,7 +57,7 @@ export default function AnnouncementPopup() {
               <img
                 src={announcement.imageUrl}
                 alt={announcement.title}
-                className="h-64 w-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer sm:h-72"
+                className="h-64 w-full object-cover object-top transition-transform duration-300 hover:scale-105 cursor-pointer sm:h-72"
                 onClick={() => setLightboxOpen(true)}
                 role="button"
                 tabIndex={0}
