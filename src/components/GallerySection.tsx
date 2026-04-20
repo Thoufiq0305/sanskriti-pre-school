@@ -94,20 +94,38 @@
 // export default GallerySection;
 import { useState } from "react";
 import { X } from "lucide-react";
-import gallery1 from "@/assets/gallery1.webp";
-import gallery2 from "@/assets/gallery2.webp";
-import gallery3 from "@/assets/gallery3.webp";
-import gallery4 from "@/assets/gallery4.webp";
-import gallery5 from "@/assets/gallery5.webp";
-import gallery6 from "@/assets/gallery6.webp";
+import gallery1 from "@/assets/galleryImg1.jpeg";
+import gallery2 from "@/assets/galleryImg2.jpeg";
+import gallery3 from "@/assets/galleryImg3.jpeg";
+import gallery4 from "@/assets/galleryImg4.jpeg";
+import gallery5 from "@/assets/galleryImg5.jpeg";
+import gallery6 from "@/assets/galleryImg6.jpeg";
+import gallery7 from "@/assets/galleryImg7.jpeg";
+import gallery8 from "@/assets/galleryImg8.jpeg";
+import gallery9 from "@/assets/galleryImg9.jpeg";
+import gallery10 from "@/assets/galleryImg10.jpeg";
+import gallery11 from "@/assets/galleryImg11.jpeg";
+import gallery12 from "@/assets/galleryImg12.jpeg";
+import gallery13 from "@/assets/galleryImg13.jpeg";
+import gallery14 from "@/assets/galleryImg14.jpeg";
+import gallery15 from "@/assets/galleryImg15.jpeg";
 
 const images = [
-  { src: gallery1, alt: "Art class" },
-  { src: gallery2, alt: "Playground fun" },
-  { src: gallery3, alt: "Reading corner" },
-  { src: gallery4, alt: "Science exploration" },
-  { src: gallery5, alt: "Music and dance" },
-  { src: gallery6, alt: "Graduation day" },
+  { src: gallery1, alt: "Kids participating in creative art class" },
+  { src: gallery2, alt: "Children playing together in school playground" },
+  { src: gallery3, alt: "Students reading books in classroom reading corner" },
+  { src: gallery4, alt: "Kids exploring simple science activities" },
+  { src: gallery5, alt: "Children performing music and dance activities" },
+  { src: gallery6, alt: "Kindergarten graduation ceremony celebration" },
+  { src: gallery7, alt: "Students receiving graduation certificates on stage" },
+  { src: gallery8, alt: "Kids smiling during graduation day event" },
+  { src: gallery9, alt: "Group photo of students at graduation ceremony" },
+  { src: gallery10, alt: "Children wearing caps during graduation day" },
+  { src: gallery11, alt: "Happy moments captured on kindergarten graduation day" },
+  { src: gallery12, alt: "Students celebrating completion of kindergarten" },
+  { src: gallery13, alt: "Teachers and students together on graduation day" },
+  { src: gallery14, alt: "Kids enjoying graduation day activities" },
+  { src: gallery15, alt: "Parents attending kindergarten graduation function" },
 ];
 
 const GallerySection = () => {
